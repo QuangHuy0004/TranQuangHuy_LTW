@@ -1,0 +1,10 @@
+{
+    "name": "tranquanghuy/web-ban-iphone",
+    "description": "xay dung web site ban hang - gvhd:Th.S Ho Hien Loi",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "application"
+        }
+    },
+    "require": {}
+}
