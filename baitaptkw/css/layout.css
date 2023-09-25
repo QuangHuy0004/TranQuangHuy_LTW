@@ -1,0 +1,184 @@
+* {
+    transition: 0.4s;
+}
+.py-2 li a:hover {
+    text-decoration: none;
+    opacity: 100%;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: #f80e02;
+    font-weight: 500;
+}
+
+.py-2 li a {
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 30%;
+    color: rgb(255, 255, 255);
+}
+
+.col-6 a:hover {
+    text-decoration: none;
+    opacity: 100%;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: #f80e02;
+    font-weight: 500;
+}
+
+.col-6 a {
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 30%;
+    color: rgb(255, 255, 255);
+}
+
+.col-md li a:hover {
+    text-decoration: none;
+    opacity: 100%;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: #f80e02;
+    font-weight: 500;
+
+}
+
+.col-md li a {
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 30%;
+    color: rgb(255, 255, 255);
+}
+
+
+a {
+    text-decoration: none;
+}
+
+.bg-footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #24272e;
+    color: white;
+}
+
+ul li {
+    font-weight: 500;
+    list-style-type: none;
+}
+
+.nav-item a.nav-link {
+    color: #000000;
+    font-weight: 500;
+    opacity: 80%;
+    transition: color 0.3s;
+}
+
+.nav-item a.nav-link:hover {
+    color: #f80e02;
+    opacity: 100%;
+    font-weight: 500;
+
+
+}
+
+.navbar-brand {
+    color: #000000;
+    opacity: 100%;
+    font-weight: 500;
+    font-size: 17px;
+
+}
+
+.col-4 a:hover p {
+    font-weight: 500;
+    color: #f80e02;
+}
+
+.col-4 a p {
+    font-weight: 500;
+    color: #000000;
+}
+
+.col-4 a {
+    font-weight: 500;
+    color: #070707;
+}
+
+.square-radio-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid #ccc;
+    width: 16px;
+    height: 16px;
+    border-radius: 0;
+    margin-right: 5px;
+    background-color: #fff; 
+    transition: 0.6s;
+}
+
+.customimg {
+    width: 100% !important;
+    height: auto;
+}
+
+
+.square-radio-input:checked {
+    transition: 0.6s;
+    background-color: #ffffff;
+    border: solid 2px #f90000;
+
+}
+
+.custom-blink {
+    background-color: #ff0000;
+    padding: 20px;
+    text-align: center; 
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.key_seach a{
+    font-weight: 200;
+    padding: 10px;
+    font-size: 15px;
+    color: #050505;
+    background-color: #f2f2f2;
+    border-radius: 2px;
+
+}
+.key_seach a:hover{
+    font-weight: 200;
+    padding: 10px;
+    font-size: 15px;
+    color: #f8f8f8;
+    background-color: #f52828;
+    border-radius: 2px;
+
+}
+.brand img{
+    width: 120px;
+    height: auto;
+}
+.slider-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.brand {
+    margin: 0 40px;
+    list-style: none;
+    display: inline-block;
+    transition: transform 1s ease-in-out;
+}
+
