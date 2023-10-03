@@ -1,10 +1,20 @@
 {
     "name": "tranquanghuy/web-ban-iphone",
-    "description": "xay dung web site ban hang - gvhd:Th.S Ho Hien Loi",
+    "description": "xay dung web site ban hang - gvhd:Th.S Ho Hien Loi - nam hoc 2023-2024 ",
+    "authors":[
+        {
+            "name": "Tran Quang Huy",
+            "email" :"huyitcdct.04@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
-            "Src\\": "application"
-        }
+            "App\\": "app/"
+        },
+        "files": [
+            "./app/Route.php",
+            "./config/database.php"
+        ]
     },
     "require": {}
 }
