@@ -38,7 +38,7 @@
                </div>
             </div>
             <div class="col-md-4 pt-4">
-            <?php require_once 'views/frontend/mod-footermenu.php'?>
+            <?php require_once 'views/frontend/mod-footermenu.php' ; ?>
             </div>
             <div class="col-md-4 pt-4 text-end">
                <h3 class="fs-5 text-end">

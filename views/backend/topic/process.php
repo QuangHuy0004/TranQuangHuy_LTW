@@ -1,36 +1,51 @@
 <?php
-
 use App\Models\Topic;
 use App\Libraries\MyClass;
-if (isset($_POST['them'])) {
-    $topic = new Topic();
-    //lấy từ form
-    $topic->name = $_POST['name'];
-    $topic->slug = strlen($_POST['slug']>0)?$_POST['slug']: MyClass::str_slug($_POST['name']);
-    $topic->description = $_POST['description'];
-    $topic->status = $_POST['status'];
+if(isset($_POST['THEM'])){
+   $topic=new Topic();
+   //lấy từ form
+   $topic->name = $_POST['name'];
+   $topic->slug = (strlen($_POST['slug'])>0) ? $_POST['slug'] : MyClass :: str_slug($_POST['name']);
+   $topic->metadesc = $_POST['metadesc'];
+   $topic->status = $_POST['status'];
+   //tự sinh ra
+   $topic->created_at = date('Y-m-d H:i:s');
+   $topic->created_by = (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 1 ;
+   var_dump($topic);
+   if($topic->name==NULL)
+ {
+    header("location:index.php?option=topic");
+ }
 
-    // //Upload file ảnh
-    // if(strlen($_FILES['image']['name'])>0)
-    // {
-    //     $target_dir = "../public/images/topic/";
-    //     $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    //     $extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    //     if(in_array($extension,['jpg','jpeg','png', 'gif', 'webp']))
-    //     {
-    //         $filename = $topic->slug . '.' . $extension;
-    //         move_uploaded_file($_FILES['image']['tmp_name'],$target_dir.$filename);
-    //         $topic->image = $filename;
-    //     }
+      //lưu vào CSDL
+   //INSERT INTO ...
+   $topic->save();
+   //chuyển hướng về index
+  MyClass::set_flash('message',['msg'=>'Thêm thành công','type'=>'success']);
+  header("location:index.php?option=topic");
+   }
 
-    // }
+if(isset($_POST['CAPNHAT'])){
 
-    //Tự sinh ra
-    $topic->created_at = date('Y-m-d H:i:s');
-    $topic->created_by = (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 1;
-
-    //Lưu vào csdl
-    $topic->save();
-    //Chuyển hướng trang
-    header('location:index.php?option=topic');
+   $id= $_POST['id'];
+   $topic=Topic::find($id);
+   if($topic==NULL)
+ {
+    header("location:index.php?option=topic");
+ }
+   //lấy từ form
+   $topic->name = $_POST['name'];
+   $topic->slug = (strlen($_POST['slug'])>0) ? $_POST['slug'] : MyClass :: str_slug($_POST['name']);
+   $topic->metadesc= $_POST['metadesc'];
+   $topic->status = $_POST['status'];
+   //tự sinh ra
+   $topic->updated_at = date('Y-m-d H:i:s');
+   $topic->updated_by = (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 1 ;
+   var_dump($topic);
+   //lưu vào CSDL
+   //INSERT INTO ...
+   $topic->save();
+  //chuyển hướng về index
+  MyClass::set_flash('message',['msg'=>'Cập nhật thành công','type'=>'success']);
+  header("location:index.php?option=topic");
 }

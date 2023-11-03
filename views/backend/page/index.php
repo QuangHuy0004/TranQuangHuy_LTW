@@ -1,4 +1,4 @@
-<?php require_once "../views/backend/header.php"; ?> 
+<?php require_once "../views/backend/header.php";?>
       <!-- CONTENT -->
       <div class="content-wrapper">
          <section class="content-header">
@@ -6,7 +6,7 @@
                <div class="row mb-2">
                   <div class="col-sm-12">
                      <h1 class="d-inline">Tất cả trang đơn</h1>
-                     <a href="page_create.html" class="btn btn-sm btn-primary">Thêm trang đơn</a>
+                     <a href="index.php?option=page&cat=create" class="btn btn-sm btn-primary">Thêm trang đơn</a>
                   </div>
                </div>
             </div>
@@ -35,7 +35,7 @@
                               <input type="checkbox">
                            </td>
                            <td>
-                              <img src="../public/images/page.jpg" alt="page.jpg">
+                           <img class="img-fluid" src="../public/images/logo.png" alt="Logo">
                            </td>
                            <td>
                               <div class="name">
@@ -57,4 +57,4 @@
          </section>
       </div>
       <!-- END CONTENT-->
-<?php require_once "../views/backend/footer.php"; ?>
+      <?php require_once "../views/backend/footer.php";?>

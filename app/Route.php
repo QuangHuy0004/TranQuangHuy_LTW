@@ -1,24 +1,25 @@
 <?php
-class Route{
-    public static function route_site() {
+class Route
+{
+    public static function route_site()
+    {
         $pathView = "views/frontend/";
         if (isset($_REQUEST['option'])) {
-            $pathView .= $_REQUEST['option'];
+            $pathView .= ($_REQUEST['option']);
             if (isset($_REQUEST['slug'])) {
-                $pathView.="-detail.php";
+                $pathView .= "-detail.php";
             } else {
                 if (isset($_REQUEST['cat'])) {
                     $pathView .= "-category.php";
                 } else {
-                     $pathView .= ".php";
+                    $pathView .= ".php";
                 }
             }
-        } else { 
+        } else {
             $pathView .= "home.php";
-        } 
+        }
         require_once $pathView;
     }
-
     public static function route_admin()
     {
         $pathView = "../views/backend/";
@@ -34,4 +35,5 @@ class Route{
         }
         require_once $pathView;
     }
+
 }

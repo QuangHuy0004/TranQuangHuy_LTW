@@ -2,37 +2,41 @@
 
 use App\Models\Product;
 use App\Models\Category;
+$list_id=array();
+array_push($list_id,$cat->id);
+$mod_menu_listcategory1 = Category::where([['parent_id','=',$cat->id],['status','=',1]])
+->orderBy('sort_order','ASC')
+->select('id')
+->get();
+//$cat->id
 
-$list_id = array();
-array_push($list_id, $cat->id);
-$list_category1 = Category::where([['parent_id', '=', $cat->id], ['status', '=', 1]])
-    ->orderBy('sort_order', 'ASC')
-    ->select('id')
-    ->get();
 
-if (count($list_category1) > 0) {
-    foreach ($list_category1 as $cat1) {
-        array_push($list_id, $cat1->id);
-        $list_category2 = Category::where([['parent_id', '=', $cat1->id], ['status', '=', 1]])
-            ->orderBy('sort_order', 'ASC')
-            ->select('id')
-            ->get();
-        if (count($list_category2) > 0) {
-            foreach ($list_category2 as $cat2) {
-                array_push($list_id, $cat2->id);
+if(count($mod_menu_listcategory1)>0)
+{
+    foreach($mod_menu_listcategory1 as $cat1)
+    {
+        array_push($list_id,$cat1->id);
+        $mod_menu_listcategory2 = Category::where([['parent_id','=',$cat1->id],['status','=',1]])
+        ->orderBy('sort_order','ASC')
+        ->select('id')
+        ->get();
+        if(count($mod_menu_listcategory2)>0)
+        {
+            foreach($mod_menu_listcategory2 as $cat2)
+            {
+                array_push($list_id,$cat2->id);
             }
         }
     }
 }
 
-$list_product = Product::where('status', '=', 1)
-    ->whereIn('category_id', $list_id)
-    ->orderBy('created_at', 'DESC')
-    ->limit(8)
-    ->get();
-
+$list_product = Product::where([['status','=',1]])
+->whereIn('category_id',$list_id)
+->limit(8)
+->orderBy('created_at','DESC')
+->get();
 ?>
-<?php if(count($list_product) > 0): ?>
+<?php if(count($list_product)>0):?>
 <div class="product-category mt-3">
     <div class="row">
         <div class="col-md-3">
@@ -45,11 +49,11 @@ $list_product = Product::where('status', '=', 1)
             <div class="row product-list">
                 <?php foreach ($list_product as $product) : ?>
                     <div class="col-6 col-md-3 mb-4">
-                        <?php require 'views/frontend/product-item.php'; ?>
+                        <?php require 'views\frontend\product-item.php'; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </div>
 </div>
-<?php endif; ?>
+<?php endif;?>

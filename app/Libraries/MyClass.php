@@ -67,20 +67,60 @@ class MyClass
         $slug = preg_replace("/(Ẁ|Ŵ|Ẃ|Ẅ)/", 'W', $slug);
         $slug = preg_replace("/(Ģ|G|Ğ|Ĝ|Ġ)/", 'G', $slug);
         $slug = preg_replace("/(Ŧ|Ṫ)/", 'T', $slug);
-        if (empty($slug)) return $slug;
+        if (empty($slug))
+            return $slug;
         if (is_array($slug)) {
             foreach (array_keys($slug) as $key) {
-                
+
             }
         } else {
             $search = array(
-                '&amp;', '&#039;', '&quot;', '&lt;', '&gt;', '&#x005C;', '&#x002F;',
-                '&#40;', '&#41;', '&#42;', '&#91;', '&#93;', '&#33;', '&#x3D;', '&#x23;',
-                '&#x25;', '&#x5E;', '&#x3A;', '&#x7B;', '&#x7D;', '&#x60;', '&#x7E;'
+                '&amp;',
+                '&#039;',
+                '&quot;',
+                '&lt;',
+                '&gt;',
+                '&#x005C;',
+                '&#x002F;',
+                '&#40;',
+                '&#41;',
+                '&#42;',
+                '&#91;',
+                '&#93;',
+                '&#33;',
+                '&#x3D;',
+                '&#x23;',
+                '&#x25;',
+                '&#x5E;',
+                '&#x3A;',
+                '&#x7B;',
+                '&#x7D;',
+                '&#x60;',
+                '&#x7E;'
             );
             $replace = array(
-                '&', '\'', '"', '<', '>', '\\', '/', '(', ')', '*',
-                '[', ']', '!', '=', '#', '%', '^', ':', '{', '}', '`', '~'
+                '&',
+                '\'',
+                '"',
+                '<',
+                '>',
+                '\\',
+                '/',
+                '(',
+                ')',
+                '*',
+                '[',
+                ']',
+                '!',
+                '=',
+                '#',
+                '%',
+                '^',
+                ':',
+                '{',
+                '}',
+                '`',
+                '~'
             );
             $slug = str_replace($search, $replace, $slug);
         }
@@ -91,15 +131,39 @@ class MyClass
         $slug = str_replace("---", " ", $slug);
         $slug = str_replace("--", " ", $slug);
         $slug = preg_replace('/(\W+)/i', '-', $slug);
-        $slug = str_replace(array(
-            '-8220-', '-8221-', '-7776-'
-        ), '-', $slug);
+        $slug = str_replace(
+            array(
+                '-8220-',
+                '-8221-',
+                '-7776-'
+            ),
+            '-',
+            $slug
+        );
         //$slug = preg_replace( '/[^a-zA-Z0-9\-]+/e', '', $slug );
-        $slug = str_replace(array(
-            'dAg', 'DAg', 'uA', 'iA', 'yA', 'dA', '--', '-8230'
-        ), array(
-            'dong', 'Dong', 'uon', 'ien', 'yen', 'don', '-', ''
-        ), $slug);
+        $slug = str_replace(
+            array(
+                'dAg',
+                'DAg',
+                'uA',
+                'iA',
+                'yA',
+                'dA',
+                '--',
+                '-8230'
+            ),
+            array(
+                'dong',
+                'Dong',
+                'uon',
+                'ien',
+                'yen',
+                'don',
+                '-',
+                ''
+            ),
+            $slug
+        );
         $slug = preg_replace('/(\-)$/', '', $slug);
         $slug = preg_replace('/^(\-)/', '', $slug);
         return strtolower($slug);
@@ -116,13 +180,13 @@ class MyClass
         $a = array_slice($array, 0, $limit);
         return implode(' ', $a);
     }
-    public static function set_flash($name,$arr)
+    public static function set_flash($name, $arr)
     {
-        $_SESSION[$name] = ['msg'=>$arr['msg'], 'type'=>$arr['type']];
+        $_SESSION[$name] = ['msg' => $arr['msg'], 'type' => $arr['type']];
     }
     public static function get_flash($name)
     {
-        $arr=$_SESSION[$name];
+        $arr = $_SESSION[$name];
         unset($_SESSION[$name]);
         return $arr;
     }
@@ -130,4 +194,16 @@ class MyClass
     {
         return isset($_SESSION[$name]);
     }
+    // public static function word_limit($str, $limit = 10)
+    // {
+    //     $str = strip_tags($str);
+    //     while (strpos($str, '')) {
+    //         $str = str_replace('','',$str);
+    //     }
+    //     $array = explode (1, $str);
+    //     $limit = ($limit <= 0)? count($array): $limit;
+    //     $limit ($limit >= count($array)) ? count($array) : $limit;
+    //     $a = array_slice ($array, 0, $limit);
+    //     return implode('', $a);
+    // }
 }

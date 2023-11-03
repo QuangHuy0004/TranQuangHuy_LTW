@@ -1,7 +1,7 @@
 :root
 {
-    --text-main:#5252529e;
-    --bg-main:#5252529e;
+    --text-main:#000000;
+    --bg-main:#000000;
 }
 
 .bg-main {
@@ -15,12 +15,12 @@
 
 .btn-main {
    background-color: var(--bg-main);
-   color: white;
+   color: rgb(255, 255, 255);
 }
 
 .btn-main:hover {
-   border: 1px solid #ff0099;
-   color: #ff0099;
+   border: 1px solid #000000;
+   color: #000000;
 }
 
 /*hdl-header*/
@@ -29,13 +29,13 @@
    height: 60px;
    line-height: 60px;
    text-align: center;
-   border: 1px solid #ff0099;
+   border: 1px solid #000000;
    position: relative;
 }
 
 .box-cart i {
    font-size: 26px;
-   color: #ff0099;
+   color: #000000;
 }
 
 .box-cart span {
@@ -45,7 +45,7 @@
    width: 25px;
    height: 25px;
    border-radius: 50%;
-   background-color: #ff0099;
+   background-color: #000000;
    line-height: 25px;
    font-size: 14px;
    color: white;
@@ -100,7 +100,7 @@
 }
 
 .product-item .product-item-name a {
-   color: #ff0099;
+   color: #000000;
    text-decoration: none;
 }
 
@@ -121,7 +121,7 @@
 ul.list-category li a,
 ul.list-brand li a,
 ul.list-page li a {
-   color: #ff0099;
+   color: #000000;
    text-decoration: none;
    transition: 0.5s;
 }
