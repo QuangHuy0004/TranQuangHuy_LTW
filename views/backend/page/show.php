@@ -1,27 +1,21 @@
 <?php
 use App\Models\Post;
-//status=0--> Rac
-//status=1--> Hiện thị lên trang người dùng
-//
-//SELECT * FROM brand wher status!=0 and id=1 order by created_at desc
+use App\Libraries\MyClass;
 $id = $_REQUEST['id'];
-$post = Post::find($id);
-if($post==null){
-    header("location:index.php?option=post");
+$page = Post::find($id);
+if($page == null){
+   MyClass::set_flash('message',['msg'=>'Lỗi trang','type'=>'danger']);
+    header('Location:index.php?option=page&cat=page');
 }
-
-$list = post::where('status','=',0)->orderBy('Created_at','DESC')->get();
 ?>
-<?php require_once "../views/backend/header.php";?>
+<?php require_once "../views/backend/header.php"; ?>
       <!-- CONTENT -->
-      <form action ="index.php?option=post&cat=process" method="post" enctype="multipart/form-data">
       <div class="content-wrapper">
          <section class="content-header">
             <div class="container-fluid">
                <div class="row mb-2">
                   <div class="col-sm-12">
-                     <h1 class="d-inline">Thùng rác bài viết</h1>
-                     <a href="index.php?option=post&cat=create" class="btn btn-sm btn-primary">Thêm bài viết</a>
+                     <h1 class="d-inline">Chi tiết thương hiệu</h1>
                   </div>
                </div>
             </div>
@@ -29,87 +23,116 @@ $list = post::where('status','=',0)->orderBy('Created_at','DESC')->get();
          <!-- Main content -->
          <section class="content">
             <div class="card">
-               <div class="card-header p-2">
-               <div class="row">
-                  
-                Noi dung
-                <div class="col-md-11 text-right">
-               <a href="index.php?option=post" class="btn btn-sm btn-info">
+               <div class="card-header text-right">
+                  <div class="row">
+                     <div class="col-md-12 text-right">
+                     <a href="index.php?option=page" class="btn btn-sm btn-info">
                      <i class="fa fa-arrow-left" aria-hidden="true"></i>
                      Về danh sách
                   </a>
+                     </div>
+                  </div>
                </div>
-               <div class="card-body p-2">
-                  <table class="table table-bordered">
-                     <thead>
-                        <tr>
-                           
-                           <th>Tên trường</th>
-                           <th>Giá trị</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                     <tr>
-                         <td>ID</td>
-                         <td><?= $post->id;?></td>
-                     </tr>
-                     <tr>
-                         <td>topic_id</td>
-                         <td><?= $post->topic_id;?></td>
-                     </tr>
-                     <tr>
-                         <td>title</td>
-                         <td><?= $post->title;?></td>
-                     </tr>
-                     <tr>
-                         <td>slug</td>
-                         <td><?= $post->slug;?></td>
-                     </tr>
-                     <tr>
-                         <td>detail</td>
-                         <td><?= $post->detail;?></td>
-                     </tr>
-                     <tr>
-                                 <td>image</td>
-                                 <td><img class="img-fluid" src="../public/images/post/<?=$post->image;?>" alt="<?=$post->image;?>"></td>
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <table class="table table-bordered">
+                           <thead>
+                              <tr>
+                                 <th class="text-center" style="width:30px;">
+                                    <input type="checkbox">
+                                 </th>
+                                 <th class="text-center" style="width:130px;">Hình ảnh</th>
+                                 <th>Tên trường</th>
+                                 <th>Giá trị</th>
                               </tr>
+                           </thead>
+                           <tbody>  
                            <tr>
-                     <tr>
-                         <td>type</td>
-                         <td><?= $post->type;?></td>
-                     </tr>
-                     <tr>
-                         <td>description</td>
-                         <td><?= $post->description;?></td>
-                     </tr>
-                     <tr>
-                         <td>created_at</td>
-                         <td><?= $post->created_at;?></td>
-                     </tr>
-                     <tr>
-                         <td>created_by</td>
-                         <td><?= $post->created_by;?></td>
-                     </tr>
-                     <tr>
-                         <td>updated_at</td>
-                         <td><?= $post->updated_at	;?></td>
-                     </tr>
-                     <tr>
-                         <td>updated_by</td>
-                         <td><?= $post->updated_by;?></td>
-                     </tr>
-                     <tr>
-                         <td>status</td>
-                         <td><?= $post->status;?></td>
-                     </tr>
-
-
-                     </tbody>
-                  </table>
+                                 <td></td>
+                                 <td></td>
+                                 <td>ID</td>
+                                 <td><?=$page->id; ?></td>
+                              </tr>  
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Topic_id</td>
+                                 <td><?=$page->topic_id; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Title</td>
+                                 <td><?=$page->title; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Slug</td>
+                                 <td><?=$page->slug; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Detail</td>
+                                 <td><?=$page->detail; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Image</td>
+                                 <td><?=$page->image; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Type</td>
+                                 <td><?=$page->type; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Description</td>
+                                 <td><?=$page->description; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Created_at</td>
+                                 <td><?=$page->created_at; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Created_by</td>
+                                 <td><?=$page->created_by; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Updated_at</td>
+                                 <td><?=$page->updated_at; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Updated_by</td>
+                                 <td><?=$page->updated_by; ?></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td>Status</td>
+                                 <td><?=$page->status; ?></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
                </div>
             </div>
          </section>
       </div>
-      </form>
       <!-- END CONTENT-->
-      <?php require_once "../views/backend/footer.php";?>
+<?php require_once "../views/backend/footer.php"; ?>

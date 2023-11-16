@@ -55,7 +55,7 @@ $total = Product::where([['status', '=', 1], ['brand_id', '=', $brand->id]])->co
                   <?php endforeach; ?>
                </div>
             </div>
-            <?= Pagination::pageLink($total, $limit, 'index.php?option=brand&cat=' . $slug); ?>
+            <?= Pagination::pageLink($total, $current, $limit, 'index.php?option=brand&cat=' . $slug); ?>
 
          </div>
       </div>

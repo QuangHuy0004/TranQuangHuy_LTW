@@ -1,14 +1,15 @@
 <?php
-use App\Libraries\MyClass;
-use App\Models\Product; 
- $id= $_REQUEST['id'];
- $product= Product::find($id);
 
- if($product==NULL)
- {
+use App\Libraries\MyClass;
+use App\Models\Category;
+$id=$_REQUEST['id'];
+$category=Category::find($id);
+if($category==null)
+{
     MyClass::set_flash('message',['msg'=>'Lỗi trang 404','type'=>'danger']);
-    header("location:index.php?option=product&cat=trash");
- }
- $product->delete();//xoas khỏi csdl
- MyClass::set_flash('message',['msg'=>'Xóa thành công','type'=>'success']);
- header("location:index.php?option=product&cat=trash");
+    header("location:index.php?option=category&cat=trash");
+}
+$category->delete();//xóa khỏi CSDL
+MyClass::set_flash('message',['msg'=>'Xóa CSDL thành công','type'=>'success']);
+header("location:index.php?option=category&cat=trash");
+?>

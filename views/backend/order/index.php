@@ -1,15 +1,9 @@
 <?php
 use App\Models\Order;
-
-//SELECT * FROM category WHERE  status!=0 AND .... ORDERBY create_by DESC
-//status==1 --> hiện trang người dùng
-//status==2 --> không hiện
-//status==0 --> rác
 $list = Order::where('status', '!=', 0)
    ->orderBY('created_at', 'DESC')
    ->get();
 ?>
-
 <?php require_once '../views/backend/header.php'; ?>
 <!-- CONTENT -->
 <form action="index.php?option=order&cat=process" method="post" enctype="multipart/form-data">
@@ -29,21 +23,18 @@ $list = Order::where('status', '!=', 0)
          <div class="card">
             <div class="card-header p-2">
                <div class="col-md-6 text-left">
-                  <a href="order_create.html" class="btn btn-sm btn-primary">Thêm thương hiêu</a>
-                  <a class="btn btn-sm btn-info " href="index.php?option=order">Tất cả</a>
-                  <a class="btn btn-sm btn-warning " href="index.php?option=order&cat=trash">
-                     Thùng rác</a>
+               <a href="index.php?option=order">Tất cả</a> |
+                  <a href="index.php?option=order&cat=trash">Thùng rác</a>
                </div>
             </div>
             <div class="card-body p-2">
-               <?php require_once '../views/backend/message.php'; ?>
+            <?php require_once "../views/backend/message.php"; ?>
                <table class="table table-bordered">
                   <thead>
                      <tr>
                         <th class="text-center" style="width:30px;">
                            <input type="checkbox">
                         </th>
-                        <th>Mã khách hàng</th>
                         <th>Tên người nhận</th>
                         <th>Địa chỉ người nhận</th>
                         <th>Điện thoại người nhận </th>
@@ -57,33 +48,26 @@ $list = Order::where('status', '!=', 0)
                                  <input type="checkbox">
                               </td>
                               <td>
-                                 <div class="user_id">
-                                    <?= $item->user_id; ?>
-                                 </div>
-                              </td>
-                              <td>
                                  <div class="name">
                                     <?= $item->deliveryname; ?>
                                  </div>
                                  <div class="function_style">
-                                    <?php if ($item->status == 1): ?>
-                                       <a href="index.php?option=order&cat=status&id=<?= $item->id; ?>"
-                                          class="btn btn-success btn-xs">
-                                          <i class="fas fa-toggle-on"></i> Hiện</a>
-                                    <?php else: ?>
-                                       <a href="index.php?option=order&cat=status&id=<?= $item->id; ?>"
-                                          class="btn btn-danger btn-xs">
-                                          <i class="fas fa-toggle-on"></i> Ẩn</a>
-                                    <?php endif; ?>
-                                    <a href="index.php?option=order&cat=edit&id=<?= $item->id; ?>"
-                                       class="btn btn-warning btn-xs">
-                                       <i class="fas fa-edit"></i> Chỉnh sửa</a>
-                                    <a href="index.php?option=order&cat=show&id=<?= $item->id; ?>" class="btn btn-info btn-xs">
-                                       <i class="fas fa-eye"></i> Chi tiết</a>
-                                    <a href="index.php?option=order&cat=delete&id=<?= $item->id; ?>"
-                                       class="btn btn-danger btn-xs">
-                                       <i class="fas fa-trash"></i> Xoá</a>
-                                 </div>
+                                          <?php if ($item->status == 1) : ?>
+                                             <a class="btn btn-success btn-xs" href="index.php?option=order&cat=status&id=<?= $item->id ?>">
+                                                <i class="fa fa-toggle-on"></i>
+                                                Hiện</a>
+                                          <?php else : ?>
+                                             <a class="btn btn-danger btn-xs" href="index.php?option=order&cat=status&id=<?= $item->id ?>">
+                                                <i class="fa fa-toggle-off"></i>
+                                                Ẩn</a>
+                                          <?php endif; ?>
+                                          <a class="btn btn-info btn-xs" href="index.php?option=order&cat=show&id=<?= $item->id ?>">
+                                             <i class="fa fa-eye"></i>
+                                             Chi tiết</a>
+                                          <a class="btn btn-danger btn-xs" href="index.php?option=order&cat=delete&id=<?= $item->id ?>">
+                                             <i class="fa fa-trash"></i>
+                                             Xoá</a>
+                                       </div>
                               </td>
                               <td>
                                  <?= $item->deliveryaddress; ?>

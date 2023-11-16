@@ -1,17 +1,12 @@
 <?php
-use App\Models\Menu;
-//SELECT * FROM category WHERE  status!=0 AND .... ORDERBY create_by DESC
-//status==1 --> hiện trang người dùng
-//status==2 --> không hiện
-//status==0 --> rác
-$list = Menu::where('status','!=',0)
-  ->orderBY('created_at','DESC')
-  ->get();
+   use App\Models\Menu;
+   $list = Menu::where('status','!=',0)
+   ->orderBy('created_at','DESC')
+   ->get();
 ?>
-
-<?php require_once '../views/backend/header.php';?>
+<?php require_once "../views/backend/header.php"; ?>
       <!-- CONTENT -->
-    <form action="index.php?option=menu&cat=process" method="post" enctype="multipart/form-data">
+      <form action="index.php?option=menu&cat=process" method="post" enctype="multipart/form-data">
       <div class="content-wrapper">
          <section class="content-header">
             <div class="container-fluid">
@@ -19,23 +14,21 @@ $list = Menu::where('status','!=',0)
                   <div class="col-sm-12">
                      <h1 class="d-inline">Tất cả menu</h1>
                   </div>
+                  
                </div>
             </div>
          </section>
          <!-- Main content -->
          <section class="content">
             <div class="card">
-               <div class="card-header text-right">
-               <div class="col-md-6 text-left">
-                        <a class="btn btn-sm btn-info "
-                        href="index.php?option=menu">Tất cả</a>
-                        <a class="btn btn-sm btn-warning "
-                         href="index.php?option=menu&cat=trash">
-                         Thùng rác</a>
+               <div class="card-header ">
+                     <div class="text-left">
+                        <a class="text-success" href="index.php?option=menu">Tất cả</a>|
+                        <a class="text-danger" href="index.php?option=menu&cat=trash">Thùng rác</a>
                      </div>
                </div>
                <div class="card-body p-2">
-               <?php require_once '../views/backend/message.php' ;?>
+               <?php require_once "../views/backend/message.php"; ?>
                   <div class="row">
                      <div class="col-md-3">
                         <div class="accordion" id="accordionExample">
@@ -69,24 +62,24 @@ $list = Menu::where('status','!=',0)
                               </div>
                            </div>
                            <div class="card mb-0">
-                              <div class="card-header" id="headingmenu">
-                                 <strong data-toggle="collapse" data-target="#collapsemenu" aria-expanded="true"
-                                    aria-controls="collapsemenu">
+                              <div class="card-header" id="headingBrand">
+                                 <strong data-toggle="collapse" data-target="#collapseBrand" aria-expanded="true"
+                                    aria-controls="collapseBrand">
                                     Thương hiệu
                                  </strong>
                               </div>
-                              <div id="collapsemenu" class="collapse" aria-labelledby="headingmenu"
+                              <div id="collapseBrand" class="collapse" aria-labelledby="headingBrand"
                                  data-parent="#accordionExample">
                                  <div class="card-body p-3">
                                     <div class="form-check">
-                                       <input name="menuId[]" class="form-check-input" type="checkbox" value=""
-                                          id="menuId">
-                                       <label class="form-check-label" for="menuId">
+                                       <input name="BrandId[]" class="form-check-input" type="checkbox" value=""
+                                          id="BrandId">
+                                       <label class="form-check-label" for="BrandId">
                                           Default checkbox
                                        </label>
                                     </div>
                                     <div class="my-3">
-                                       <button name="ADDmenu" class="btn btn-sm btn-success form-control">Thêm</button>
+                                       <button name="ADDBRAND" class="btn btn-sm btn-success form-control">Thêm</button>
                                     </div>
                                  </div>
                               </div>
@@ -156,7 +149,7 @@ $list = Menu::where('status','!=',0)
                                        <input type="text" name="link" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                       <button name="ADDCUSTOM" class="btn btn-sm btn-success form-control">Thêm</button>
+                                       <button class="btn btn-sm btn-success form-control" name="THEM" >Thêm</button>
                                     </div>
                                  </div>
                               </div>
@@ -176,37 +169,39 @@ $list = Menu::where('status','!=',0)
                               </tr>
                            </thead>
                            <tbody>
-                           <?php if(count($list)>0):?>
-                                 <?php foreach($list as $item): ?>
+                              <?php if(count($list) > 0) : ?>
+                                 <?php foreach ($list as $item): ?>
                               <tr class="datarow">
                                  <td>
                                     <input type="checkbox">
                                  </td>
                                  <td>
                                     <div class="name">
-                                    <?= $item->name;?>
+                                    <?= $item->name; ?>
                                     </div>
                                     <div class="function_style">
-                                    <?php if($item->status==1):?>
-                                       <a  href="index.php?option=menu&cat=status&id=<?= $item->id;?>" class="btn btn-success btn-xs" >
-                                       <i class="fas fa-toggle-on"></i> Hiện</a>
-                                       <?php else : ?>
-                                       <a  href="index.php?option=menu&cat=status&id=<?= $item->id;?>" class="btn btn-danger btn-xs">
-                                       <i class="fas fa-toggle-on"></i> Ẩn</a>
-                                       <?php endif;?>
-                                       <a  href="index.php?option=menu&cat=edit&id=<?= $item->id;?>" class="btn btn-warning btn-xs">
-                                       <i class="fas fa-edit"></i> Chỉnh sửa</a> 
-                                       <a href="index.php?option=menu&cat=show&id=<?= $item->id;?>" class="btn btn-info btn-xs">
-                                       <i class="fas fa-eye"></i> Chi tiết</a> 
-                                       <a href="index.php?option=menu&cat=delete&id=<?= $item->id;?>" class="btn btn-danger btn-xs">
-                                       <i class="fas fa-trash"></i> Xoá</a>
-                                    </div>
+                                 <?php if ($item->status == 1) : ?>
+                                    <a class="btn btn-success btn-xs" href="index.php?option=menu&cat=status&id=<?= $item->id ?>">
+                                       <i class="fa fa-toggle-on"></i>
+                                       Hiện</a>
+                                 <?php else : ?>
+                                    <a class="btn btn-danger btn-xs" href="index.php?option=menu&cat=status&id=<?= $item->id ?>">
+                                       <i class="fa fa-toggle-off"></i>
+                                       Ẩn</a>
+                                 <?php endif; ?>
+                                 <a class="btn btn-info btn-xs" href="index.php?option=menu&cat=show&id=<?= $item->id ?>">
+                                    <i class="fa fa-eye"></i>
+                                    Chi tiết</a>
+                                 <a class="btn btn-danger btn-xs" href="index.php?option=menu&cat=delete&id=<?= $item->id ?>">
+                                    <i class="fa fa-trash"></i>
+                                    Xoá</a>
+                              </div>
                                  </td>
-                                 <td><?= $item->link;?></td>
-                                 <td><?= $item->table_id;?></td>
+                                 <td><?= $item->link; ?></td>
+                                 <td><?= $item->type; ?></td>
                               </tr>
-                              <?php endforeach;?>
-                              <?php endif;?>
+                                 <?php endforeach; ?>
+                              <?php endif; ?>
                            </tbody>
                         </table>
                      </div>
@@ -215,6 +210,6 @@ $list = Menu::where('status','!=',0)
             </div>
          </section>
       </div>
-   </form>
+      </form>
       <!-- END CONTENT-->
-<?php require_once '../views/backend/footer.php';?>
+<?php require_once "../views/backend/footer.php"; ?>

@@ -1,7 +1,7 @@
 :root
 {
-    --text-main:#000000;
-    --bg-main:#000000;
+    --text-main: #c21727;
+    --bg-main:#c21727;
 }
 
 .bg-main {
@@ -19,8 +19,8 @@
 }
 
 .btn-main:hover {
-   border: 1px solid #000000;
-   color: #000000;
+   border: 1px solid #863139;
+   color:#863139;
 }
 
 /*hdl-header*/
@@ -29,13 +29,13 @@
    height: 60px;
    line-height: 60px;
    text-align: center;
-   border: 1px solid #000000;
+   border: 1px solid #863139;
    position: relative;
 }
 
 .box-cart i {
    font-size: 26px;
-   color: #000000;
+   color: #863139;
 }
 
 .box-cart span {
@@ -45,7 +45,7 @@
    width: 25px;
    height: 25px;
    border-radius: 50%;
-   background-color: #000000;
+   background-color: #863139;
    line-height: 25px;
    font-size: 14px;
    color: white;
@@ -63,7 +63,7 @@
 
 .call-login--register ul li a {
    text-decoration: none;
-   color: black;
+   color: #863139;
    padding: 10px;
    font-size: 90%;
 }

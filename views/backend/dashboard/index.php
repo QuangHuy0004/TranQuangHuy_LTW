@@ -1,4 +1,4 @@
-<?php require_once "../views/backend/header.php";?>
+<?php require_once "../views/backend/header.php" ;?>
       <!-- CONTENT -->
       <div class="content-wrapper">
          <section class="content-header">
@@ -22,6 +22,6 @@
             </div>
          </section>
       </div>
-
-      <?php require_once "../views/backend/footer.php";?>
-     
+      <!-- END CONTENT-->
+<?php require_once "../views/backend/footer.php" ;?>
+      

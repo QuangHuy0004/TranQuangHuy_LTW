@@ -1,21 +1,20 @@
 <?php
 use App\Models\Menu;
+use App\Models\User;
+use App\Libraries\MyClass;
+$id = $_REQUEST['id'];
+$menu = Menu::find($id);
+$parentId= Menu::find($menu->parent_id);
 
-$id= $_REQUEST['id'];
-$menu= Menu::find($id);
-
-if($menu==NULL)
-{
-   header("location:index.php?option=menu&cat=trash");
+$parentName = $parentId ? $parentId->name : '';
+if($menu == null){
+   MyClass::set_flash('message',['msg'=>'Lỗi trang 404','type'=>'danger']);
+    header('Location:index.php?option=menu&cat=menu');
 }
 ?>
-
-
-
-<?php require_once '../views/backend/header.php' ;?>
-
+<?php require_once "../views/backend/header.php"; ?>
       <!-- CONTENT -->
-  <div class="content-wrapper">
+      <div class="content-wrapper">
          <section class="content-header">
             <div class="container-fluid">
                <div class="row mb-2">
@@ -28,13 +27,13 @@ if($menu==NULL)
          <!-- Main content -->
          <section class="content">
             <div class="card">
-               <div class="card-header">
+               <div class="card-header text-right">
                   <div class="row">
-                     <div class="col-md-12 text-right ">
+                     <div class="col-md-12 text-right">
                      <a href="index.php?option=menu" class="btn btn-sm btn-info">
                      <i class="fa fa-arrow-left" aria-hidden="true"></i>
                      Về danh sách
-                     </a>
+                  </a>
                      </div>
                   </div>
                </div>
@@ -45,70 +44,60 @@ if($menu==NULL)
                            <thead>
                               <tr>
                                  <th>Tên trường</th>
-                                 <th>giá trị</th>
+                                 <th>Giá trị</th>
                               </tr>
                            </thead>
-                           <tbody>
+                           <tbody>  
                               <tr>
+                                 
                                  <td>ID</td>
-                                 <td><?=$menu->id?></td>
+                                 <td><?=$menu->id; ?></td>
+                              </tr>  
+                              <tr>
+                                 
+                                 <td>Tên menu</td>
+                                 <td><?=$menu->name; ?></td>
                               </tr>
                               <tr>
-                                 <td>Name</td>
-                                 <td><?=$menu->name?></td>
+                                 
+                                 <td>Link</td>
+                                 <td><?=$menu->link; ?></td>
                               </tr>
                               <tr>
-                                 <td>link</td>
-                                 <td><?=$menu->link?></td>
+                                 
+                                 <td>Kiểu menu</td>
+                                 <td><?=$menu->type; ?></td>
                               </tr>
                               <tr>
-                                 <td>type</td>
-                                 <td><?=$menu->type?></td>
+                                 
+                                 <td>Vị trí</td>
+                                 <td><?=$menu->postion; ?></td>
                               </tr>
                               <tr>
-                              <tr>
-                                 <td>table_id</td>
-                                 <td><?=$menu->table_id?></td>
+                                 
+                                 <td>Level</td>
+                                 <td><?=$menu->level; ?></td>
                               </tr>
                               <tr>
-                              <tr>
-                                 <td>sort_order</td>
-                                 <td><?=$menu->sort_order?></td>
+                                 <td>Tên cấp cha</td>
+                                 <td><?=$parentName; ?></td>
                               </tr>
                               <tr>
-                              <tr>
-                                 <td>position</td>
-                                 <td><?=$menu->position?></td>
-                              </tr>
-                              <tr>
-                              <tr>
-                                 <td>level</td>
-                                 <td><?=$menu->level?></td>
-                              </tr>
-                              <tr>
-                              <tr>
-                                 <td>parent_id</td>
-                                 <td><?=$menu->parent_id?></td>
-                              </tr>        
-                              <tr>
-                                 <td>created_at</td>
-                                 <td><?=$menu->created_at?></td>
-                              </tr>                        
-                              <tr>
-                                 <td>created_by</td>
-                                 <td><?=$menu->created_by?></td>
-                              </tr>
-                              <tr>
-                                 <td>updated_at</td>
-                                 <td><?=$menu->updated_at?></td>
-                              </tr>
-                              <tr>
-                                 <td>updated_by</td>
-                                 <td><?=$menu->updated_by?></td>
-                              </tr>
-                                 <td>status</td>
-                                 <td><?=$menu->status?></td>
-                              </tr>
+                                    <td>Ngày tạo</td>
+                                    <td><?= $menu->created_at; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Mã người tạo</td>
+                                    <td><?= $menu->created_by; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Trạng thái</td>
+                                    <?php if($menu->status == 1): ?>
+                                        <td>Xuất bản</td>
+                                    <?php else: ?>
+                                        <td>Chưa xuất bản</td>
+                                    <?php endif; ?></td>
+                                </tr>
                            </tbody>
                         </table>
                      </div>
@@ -118,8 +107,4 @@ if($menu==NULL)
          </section>
       </div>
       <!-- END CONTENT-->
-
-<?php require_once '../views/backend/footer.php' ;?>
-
-
-  
+<?php require_once "../views/backend/footer.php"; ?>

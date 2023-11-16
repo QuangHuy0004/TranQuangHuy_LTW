@@ -1,11 +1,12 @@
 <?php
-
 use App\Models\Post;
-
+use App\Libraries\MyClass;
 $id = $_REQUEST['id'];
-$post = Post::find($id);
-if($post==null){
-    header("location:index.php?option=post&cat=trash");
+$page = Post::find($id);
+if($page == null){
+    MyClass::set_flash('message',['msg'=>'Lỗi trang','type'=>'danger']);
+    header('Location:index.php?option=page&cat=trash');
 }
-$post->delete();// xóa vv
-header("location:index.php?option=post&cat=trash");
+$page->delete();
+MyClass::set_flash('message',['msg'=>'Xóa khỏi Database thành công','type'=>'success']);
+header("Location:index.php?option=page&cat=trash");

@@ -1,15 +1,15 @@
 <?php
-
 use App\Models\Post;
-
+use App\Libraries\MyClass;
 $id = $_REQUEST['id'];
-$post =  Post::find($id);
-if($post==null){
-    header("location:index.php?option=post&cat=trash");
+$page = Post::find($id);
+if($page == null){
+    MyClass::set_flash('message',['msg'=>'Lỗi trang','type'=>'danger']);
+    header('Location:index.php?option=page&cat=trash');
 }
-//
-$post->status =2;
-$post->updated_at = date('Y-m-d H:i:s');
-$post->updated_by = (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 1;
-$post->save();
-header("location:index.php?option=post&cat=trash");
+$page->status = '2';
+$page->updated_at = date('Y-m-d H:i:s');
+$page->updated_by = (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] :   1;
+$page->save();
+MyClass::set_flash('message',['msg'=>'Khôi phục thành công','type'=>'success']);
+header("Location:index.php?option=page&cat=trash");
